@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   Text,
@@ -16,7 +16,7 @@ import {
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 const containerHeight = 40;
 
-class Search extends PureComponent {
+class Search extends Component {
   constructor(props) {
     super(props);
 
@@ -77,9 +77,16 @@ class Search extends PureComponent {
       this.refs.input_keyword._component.focus();
 
     }
+  }
 
-    if (this.props.initialText) {
-      this.setState(keyword: this.props.initialText);
+  componentWillReceiveProps(nextProps) {
+    if (this.props.initialText !== nextProps.initialText) {
+      if (!nextProps.initialText) {
+        this.onCancel();
+      }
+      else {
+        this.setState({keyword: nextProps.initialText});
+      }
     }
   }
 
