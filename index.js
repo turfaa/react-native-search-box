@@ -77,6 +77,10 @@ class Search extends PureComponent {
       this.refs.input_keyword._component.focus();
 
     }
+
+    if (this.props.initialText) {
+      this.setState(keyword: this.props.initialText);
+    }
   }
 
   onLayout = event => {
@@ -544,7 +548,12 @@ Search.propTypes = {
   shadowOpacityCollapsed: PropTypes.number,
   shadowOpacityExpanded: PropTypes.number,
   shadowRadius: PropTypes.number,
-  shadowVisible: PropTypes.bool
+  shadowVisible: PropTypes.bool,
+
+  /**
+    * Initial Text
+    */
+  initialText: PropTypes.string,
 };
 
 Search.defaultProps = {
